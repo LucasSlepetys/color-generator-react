@@ -1,6 +1,6 @@
 import React from 'react';
 import { toast } from 'react-toastify';
-export function SingleColor({ color, index }) {
+export function SingleColor({ color, index, numOfShades }) {
   const { hex, weight } = color;
   async function copy() {
     if (navigator.clipboard) {
@@ -16,7 +16,7 @@ export function SingleColor({ color, index }) {
   }
   return (
     <div
-      className={index > 10 ? 'color color-light' : 'color'}
+      className={index > 100 / numOfShades ? 'color color-light' : 'color'}
       style={{ backgroundColor: `#${hex}` }}
       onClick={copy}
     >

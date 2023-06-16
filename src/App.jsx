@@ -5,14 +5,14 @@ import { Form } from './Form';
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
-// toast.error('error message');
-
 const App = () => {
+  const [numOfShades, setNumOfShades] = useState(10);
   const [colors, setColors] = useState(new Values('#f15025').all(10));
 
-  function addColor(color) {
+  function addColorShade(color, percentOfShade) {
     try {
-      setColors(new Values(color).all(10));
+      setColors(new Values(color).all(percentOfShade));
+      console.log(colors, percentOfShade);
     } catch (error) {
       toast.error('Invalid color ---- ' + error);
     }
@@ -20,8 +20,8 @@ const App = () => {
 
   return (
     <main>
-      <Form addColor={addColor} />
-      <ColorList colors={colors} />
+      <Form addColorShade={addColorShade} numOfShades={numOfShades} />
+      <ColorList colors={colors} numOfShades={numOfShades} />
       <ToastContainer position='top-center' />;
     </main>
   );
